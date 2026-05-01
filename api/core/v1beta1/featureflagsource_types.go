@@ -281,17 +281,17 @@ func (fc *FeatureFlagSourceSpec) ToEnvVars() []corev1.EnvVar {
 	envs := []corev1.EnvVar{}
 
 	for _, envVar := range fc.EnvVars {
-	    newEnvVar := corev1.EnvVar{
-            Name: fc.decorateEnvVarName(envVar.Name),
-        }
+		newEnvVar := corev1.EnvVar{
+			Name: fc.decorateEnvVarName(envVar.Name),
+		}
 
-        if envVar.Value != "" {
-            newEnvVar.Value = envVar.Value
-        } else if envVar.ValueFrom != nil {
-            newEnvVar.ValueFrom = envVar.ValueFrom
-        }
+		if envVar.Value != "" {
+			newEnvVar.Value = envVar.Value
+		} else if envVar.ValueFrom != nil {
+			newEnvVar.ValueFrom = envVar.ValueFrom
+		}
 
-        envs = append(envs, newEnvVar)
+		envs = append(envs, newEnvVar)
 	}
 
 	// default values are always included in the envVars
